@@ -1,0 +1,48 @@
+# Render blueprint for the payout-bridge service.
+# Deploy: Render Dashboard → New → Blueprint → pick this repo → set the env vars
+# marked `sync: false` (secrets/URLs) in the dashboard.
+#
+# IMPORTANT: use a paid plan (starter+), NOT free. Free instances SLEEP after
+# ~15 min of inactivity, which kills the Telegram long-polling bot and the Mini
+# App. This service must stay always-on.
+services:
+  - type: web
+    name: payout-bridge
+    runtime: node
+    plan: starter
+    region: singapore # pick the region closest to your users/Mongo Atlas
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /miniapp/upload # returns 200 (the Mini App page)
+    envVars:
+      # --- Mongo (same Atlas cluster as TronPay, DB "payout-bridge") ---
+      - key: MONGODB_URI
+        sync: false
+      # --- Telegram ---
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_BOT_USERNAME
+        value: newgen_otp_bot
+      - key: TELEGRAM_GROUP_CHAT_ID
+        sync: false
+      - key: TELEGRAM_MINIAPP_SHORT_NAME
+        value: upload
+      # --- Shared secrets with TronPay (MUST match TronPay's values) ---
+      - key: INBOUND_API_KEY # == TronPay PAYOUT_BRIDGE_API_KEY
+        sync: false
+      - key: CALLBACK_SIGNING_SECRET # == TronPay PAYOUT_BRIDGE_CALLBACK_SECRET
+        sync: false
+      # --- Where to call TronPay back (its deployed URL, NOT localhost) ---
+      - key: TRONPAY_CALLBACK_URL # e.g. https://tronpay-backend.onrender.com/payout-bridge/callback
+        sync: false
+      # --- This service's own public URL (set AFTER first deploy) ---
+      - key: TELEGRAM_MINIAPP_BASE_URL # e.g. https://payout-bridge.onrender.com
+        sync: false
+      # --- Cloudinary (proof + dispute PDF storage) ---
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false

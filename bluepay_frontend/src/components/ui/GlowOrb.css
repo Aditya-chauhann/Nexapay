@@ -1,0 +1,55 @@
+@keyframes floatParticles {
+  0% { transform: translateY(0px) scale(1); opacity: 0.2; }
+  50% { transform: translateY(-20px) scale(1.5); opacity: 0.6; }
+  100% { transform: translateY(0px) scale(1); opacity: 0.2; }
+}
+
+@keyframes slowRotate {
+  0% { transform: rotate(-5deg) scale(1.2); }
+  100% { transform: rotate(5deg) scale(1.2); }
+}
+
+.glow-orb-container {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  perspective: 1000px;
+  z-index: -1;
+  pointer-events: auto; /* Allow hover tracking */
+}
+
+.glow-orb-3d-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: floatParticles 8s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 
+  Because the generated images have a pure black background, 
+  mix-blend-mode: screen makes the black fully transparent,
+  perfectly integrating the 3D glowing render into the dark navy background! 
+*/
+.glow-orb-3d-image {
+  width: 200%;
+  height: 200%;
+  max-width: none;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: contrast(1.2) brightness(1.2) drop-shadow(0 0 20px rgba(255,255,255,0.2));
+  animation: slowRotate 25s ease-in-out infinite alternate;
+}
+
+/* Floating particles */
+.glow-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+  animation: floatParticles 4s ease-in-out infinite;
+}

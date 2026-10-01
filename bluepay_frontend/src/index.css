@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11.2%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11.2%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 221.2 83.2% 53.3%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142.1 76.2% 36.3%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 221.2 83.2% 53.3%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 221.2 83.2% 53.3%;
+    --sidebar-accent: 221.2 83.2% 47%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 221.2 83.2% 47%;
+    --sidebar-ring: 0 0% 100%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(221.2 83.2% 53.3%), hsl(198.6 88.7% 48.4%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 40% 99%));
+    --shadow-glow: 0 0 30px -5px hsl(221.2 83.2% 53.3% / 0.08);
+    --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 8px -1px rgba(15, 23, 42, 0.02);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 5.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142.1 76.2% 36.3%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+
+    --sidebar-background: 222.2 84% 6.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217.2 91.2% 59.8%;
+    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 224.3 76.3% 48%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(217.2 91.2% 59.8%), hsl(198.6 88.7% 48.4%));
+    --gradient-card: linear-gradient(145deg, hsl(222.2 84% 4.9%), hsl(222.2 84% 6.9%));
+    --shadow-glow: 0 0 30px -5px hsl(217.2 91.2% 59.8% / 0.15);
+    --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 8px -1px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #root {
+    min-height: 100dvh;
+    min-height: 100vh;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  button,
+  [role="button"],
+  a[href],
+  input[type="submit"] {
+    touch-action: manipulation;
+  }
+}
+
+@layer utilities {
+  /* Horizontal scroll for data tables on small screens (iOS momentum scrolling) */
+  .table-scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  /* Hide the native up/down spinner on number inputs */
+  .no-spinner {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glow-border {
+    @apply border border-primary/20;
+    box-shadow: var(--shadow-glow);
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold tracking-tight font-mono sm:text-3xl break-words text-primary;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200;
+    @apply text-blue-100 hover:text-white hover:bg-white/10;
+  }
+
+  .sidebar-link-active {
+    @apply text-white bg-white/20 shadow-sm font-bold;
+  }
+
+  .table-row-hover {
+    @apply hover:bg-secondary/50 transition-colors duration-150;
+  }
+
+  .badge-success {
+    @apply bg-emerald-50 text-emerald-700 border border-emerald-200/60 font-semibold px-2 py-0.5 rounded-full;
+  }
+
+  .badge-warning {
+    @apply bg-amber-50 text-amber-700 border border-amber-200/60 font-semibold px-2 py-0.5 rounded-full;
+  }
+
+  .badge-destructive {
+    @apply bg-rose-50 text-rose-700 border border-rose-200/60 font-semibold px-2 py-0.5 rounded-full;
+  }
+
+  .badge-pending {
+    @apply bg-blue-50 text-blue-700 border border-blue-200/60 font-semibold px-2 py-0.5 rounded-full;
+  }
+
+  .dark .sidebar-link {
+    @apply text-slate-400 hover:text-slate-100 hover:bg-white/5;
+  }
+
+  .dark .sidebar-link-active {
+    @apply text-white bg-white/10 shadow-sm font-bold;
+  }
+
+  .dark .badge-success {
+    @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+  }
+
+  .dark .badge-warning {
+    @apply bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
+
+  .dark .badge-destructive {
+    @apply bg-destructive/10 text-destructive border border-destructive/20;
+  }
+
+  .dark .badge-pending {
+    @apply bg-primary/10 text-primary border border-primary/20;
+  }
+
+  /* Global light-mode overrides for inline status indicators - only when dark mode is inactive */
+  :not(.dark) .bg-amber-500\/10, :not(.dark) .bg-amber-500\/15 {
+    background-color: rgba(254, 243, 199, 0.8) !important;
+  }
+  :not(.dark) .text-amber-400 {
+    color: rgb(180, 83, 9) !important;
+  }
+  :not(.dark) .border-amber-500\/30, :not(.dark) .border-amber-500\/20 {
+    border-color: rgba(252, 211, 77, 0.5) !important;
+  }
+
+  :not(.dark) .bg-emerald-500\/10, :not(.dark) .bg-emerald-500\/15, :not(.dark) .bg-emerald-500\/20 {
+    background-color: rgba(240, 253, 244, 0.8) !important;
+  }
+  :not(.dark) .text-emerald-400, :not(.dark) .text-emerald-300 {
+    color: rgb(21, 128, 61) !important;
+  }
+  :not(.dark) .border-emerald-500\/40, :not(.dark) .border-emerald-500\/20 {
+    border-color: rgba(187, 247, 208, 0.5) !important;
+  }
+
+  :not(.dark) .bg-destructive\/10, :not(.dark) .bg-destructive\/15 {
+    background-color: rgba(254, 226, 226, 0.8) !important;
+  }
+  :not(.dark) .text-destructive {
+    color: rgb(185, 28, 28) !important;
+  }
+  :not(.dark) .border-destructive\/40, :not(.dark) .border-destructive\/20 {
+    border-color: rgba(254, 202, 202, 0.5) !important;
+  }
+}

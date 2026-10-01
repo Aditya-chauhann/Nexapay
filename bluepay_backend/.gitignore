@@ -1,0 +1,29 @@
+# Build Output
+dist/
+node_modules/
+
+# TypeScript Build Info & Caches
+*.tsbuildinfo
+tsconfig*.tsbuildinfo
+tsconfig.build.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Environment Files
+.env
+.env.dev
+.env.prod
+.env.*
+!.env.example
+
+# Logs & System
+*.log
+logs/
+.DS_Store
+.claude/
+.vscode/
+
+# Wallet Data & Temp Files
+data/wallets.js
+wallets*.txt
+mywallets*.txt
+wallets-topup.txt
